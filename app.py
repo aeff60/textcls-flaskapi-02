@@ -1,5 +1,5 @@
 #!/usr/bin/python
-#-*-coding: utf-8 -*-
+# -*-coding: utf-8 -*-
 ##from __future__ import absolute_import
 ######
 import json
@@ -13,9 +13,11 @@ import pandas as pd
 app = Flask(__name__)
 api = Api(app)
 
+
 @app.route('/')
 def index():
     return "Hello World!"
+
 
 class get_sentiment(Resource):
     def get(self):
@@ -26,6 +28,7 @@ class get_sentiment(Resource):
         res = ps.get_sentiment(kw)
         return res
 
-api.add_resource(get_sentiment, '/get_sentiment',endpoint='get_sentiment')
+
+api.add_resource(get_sentiment, '/get_sentiment', endpoint='get_sentiment')
 if __name__ == '__main__':
     app.run(threaded=True)

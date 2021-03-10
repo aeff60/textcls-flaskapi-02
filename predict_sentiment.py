@@ -11,16 +11,19 @@ import numpy as np
 
 def trainmodel(modelFileName='sentiment.mod'):
     # get data
-    goodlist = ['น่ารักมาก', 'สวยจัง', 'ชอบนะ',
-                'ดีจังเลยนะ', 'สุดยอดไปเลย', 'lovely', 'good']
+    goodlist = ['น่ารักมาก', 'สวยจัง', 'ชอบนะ', 'ดีจังเลยนะ', 'สุดยอดไปเลย']
     badlist = ['เฮงซวย', 'ห่วย', 'แย่สุด ๆ ', 'โถ่ ไม่ไหวอ่ะ', 'เชี่ย เอ้ย']
+    namestep1 = ['ผมชื่ออรรถวุฒิ', 'ชื่อฟิว',
+                 'ชื่อเอฟ', 'ชื่อศิรสิทธิ์', 'ฉันชื่อ']
+
     # extract feature
     goodfeat = [bn.nlp.text(sen).getw2v_light() for sen in goodlist]
     badfeat = [bn.nlp.text(sen).getw2v_light() for sen in badlist]
+    namestep1 = [bn.nlp.text(sen).getw2v_light() for sen in namestep1]
     # create training set
     nlpdataset = pd.DataFrame()
-    nlpdataset['feature'] = goodfeat + badfeat
-    nlpdataset['label'] = ['good']*5 + ['bad']*5
+    nlpdataset['feature'] = goodfeat + badfeat + namestep1
+    nlpdataset['label'] = ['good']*5 + ['bad']*5 + ['ขอทราบชื่อคนไข้ครับ']*5
     # train model
     clf = LinearSVC()
     mod = clf.fit(
