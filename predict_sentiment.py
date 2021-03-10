@@ -40,4 +40,4 @@ mod = pickle.load(open('sentiment.mod', 'rb'))
 def get_sentiment(sen):
     feat = bn.nlp.text(sen).getw2v_light()
     res = mod.predict([feat])[0]
-    return {'result': 'res'}
+    return {'result': res}
