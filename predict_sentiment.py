@@ -7,6 +7,7 @@ import pickle
 import pandas as pd
 from sklearn.svm import LinearSVC
 import numpy as np
+from flask import jsonify
 
 
 def trainmodel(modelFileName='sentiment.mod'):
@@ -49,3 +50,4 @@ def get_sentiment(sen):
     feat = bn.nlp.text(sen).getw2v_light()
     res = mod.predict([feat])[0]
     return {'result': res}
+    # return jsonify(res)
