@@ -12,7 +12,7 @@ import numpy as np
 def trainmodel(modelFileName='sentiment.mod'):
     # get data
     goodlist = ['น่ารักมาก', 'สวยจัง', 'ชอบนะ',
-                'ดีจังเลยนะ', 'สุดยอดไปเลย', 'lovely']
+                'ดีจังเลยนะ', 'สุดยอดไปเลย', 'lovely', 'good']
     badlist = ['เฮงซวย', 'ห่วย', 'แย่สุด ๆ ', 'โถ่ ไม่ไหวอ่ะ', 'เชี่ย เอ้ย']
     # extract feature
     goodfeat = [bn.nlp.text(sen).getw2v_light() for sen in goodlist]
